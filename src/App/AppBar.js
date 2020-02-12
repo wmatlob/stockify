@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import Logo from '../assets/images/myLogo.png';
+import { AppContext } from './AppProvider';
 
 const Bar = styled.div`
     display: grid;
@@ -23,14 +24,20 @@ const ControlButtonElem = styled.div`
     `}
 `
 
-function toProperCase(lower){
+function toProperCase(lower) {
     return lower.charAt(0).toUpperCase() + lower.substr(1);
 }
-function ControlButton({ name, active }) {
+function ControlButton({ name }) {
     return (
-        <ControlButtonElem active={active}>
-            {toProperCase(name)}
-        </ControlButtonElem>
+        <AppContext.Consumer>
+            {({page, setPage})=>(
+            <ControlButtonElem 
+                active={page===name}
+                onClick={()=> setPage(name)}
+            >
+                {toProperCase(name)}
+            </ControlButtonElem>)}
+        </AppContext.Consumer>
     )
 }
 export default function () {
@@ -39,9 +46,9 @@ export default function () {
             <MyLogo src={Logo} alt="My Logo" />
             <Mydiv> STOCKIFY </Mydiv>
             <div />
-            <ControlButton active name="dashboard"/>
-            <ControlButton name="settings"/>            
-            <ControlButton name="myAccount"/>            
+            <ControlButton name="dashboard" />
+            <ControlButton name="settings" />
+            <ControlButton name="myAccount" />
         </Bar>
     )
 }

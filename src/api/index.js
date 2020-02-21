@@ -54,18 +54,41 @@ const parseRawData = (
 //     });
 // };
 
-const parseTimeSeriesData = (rawData, numberOfRecords) => {
-    return parseRawData(
-        rawData,
-        numberOfRecords,
-        TIME_SERIES_DAILY_KEY,
-        TIME_SERIES_DAILY_OPEN_KEY,
-        TIME_SERIES_DAILY_HIGH_KEY,
-        TIME_SERIES_DAILY_LOW_KEY,
-        TIME_SERIES_DAILY_CLOSE_KEY,
-        TIME_SERIES_DAILY_VOLUME_KEY
-    );
-};
+// const parseTimeSeriesData = (rawData, numberOfRecords) => {
+//     return parseRawData(
+//         rawData,
+//         numberOfRecords,
+//         TIME_SERIES_DAILY_KEY,
+//         TIME_SERIES_DAILY_OPEN_KEY,
+//         TIME_SERIES_DAILY_HIGH_KEY,
+//         TIME_SERIES_DAILY_LOW_KEY,
+//         TIME_SERIES_DAILY_CLOSE_KEY,
+//         TIME_SERIES_DAILY_VOLUME_KEY
+//     );
+// };
+
+const parseTimeSeriesData = (rawData) => {
+    const data = rawData["Time Series (Daily)"];
+    const newData = Object.keys(data)
+        .map( dateKey => {
+            return(
+                // Object.keys(data[dateKey]).map( key => {
+                //     return (
+                //         data[dateKey][key]
+                //     ) 
+                // }).unshift(Date.parse(dateKey))
+                [Date.parse(dateKey),
+                    round(data[dateKey][TIME_SERIES_DAILY_OPEN_KEY], 2),
+                    round(data[dateKey][TIME_SERIES_DAILY_HIGH_KEY], 2),
+                    round(data[dateKey][TIME_SERIES_DAILY_LOW_KEY], 2),
+                    round(data[dateKey][TIME_SERIES_DAILY_CLOSE_KEY], 2),
+                    round(data[dateKey][TIME_SERIES_DAILY_VOLUME_KEY], 2),
+
+                ]
+            )
+        })
+    return newData
+}
 
 // export const getMicrosoftData = () => {
 //     return parseTimeSeriesData(microsoftData, 6);
@@ -77,7 +100,7 @@ export const getMicrosoftDataFromApi = async () => {
         `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=AAPL&outputsize=compact&apikey=${alphaVantageKey}`
     );
     const data = await response.json();
-    return parseTimeSeriesData(data, 50);
+    return parseTimeSeriesData(data);
 };
 
 export const round = (number, decimalPlaces) => {

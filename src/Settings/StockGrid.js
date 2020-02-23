@@ -17,13 +17,15 @@ function getStocksToDisplay(stockList, topSection, favorites, filteredStocks){
 }
 
 export default function ({topSection}) {
-    return <AppContext.Consumer>
-        {({stockList, favorites, filteredStocks}) =>{
-            return <StockGridSyled>
+    return (
+    <AppContext.Consumer>
+        {({stockList, favorites, filteredStocks}) =>(
+            <StockGridSyled>
                 {getStocksToDisplay(stockList, topSection, favorites, filteredStocks).map(stockKey =>
-                    <StockTile topSection={topSection} stockKey = {stockKey}/>
+                    <StockTile key={stockKey} topSection={topSection} stockKey = {stockKey}/>
                 )}
             </StockGridSyled>
-        }}
+        )}
     </AppContext.Consumer>
+    )
 }

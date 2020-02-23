@@ -22,10 +22,9 @@ const SearchInput = styled.input`
 
 const handleFilter = _.debounce((inputValue, stockList, setFilteredStocks)=>{
     //Get all the stock id
-    let stockIds = Object.keys(stockList);
+    let stockTickers = Object.keys(stockList);
     //Get all the stock names, map id to
-    let stockTickers = stockIds.map(id => stockList[id].Ticker);
-    let stockNames = stockIds.map( id => stockList[id].Name);
+    let stockNames = stockTickers.map( id => stockList[id].Name);
     let allStringsToSearch = stockTickers.concat(stockNames);
     let fuzzyResults = fuzzy
         .filter(inputValue, allStringsToSearch, {})

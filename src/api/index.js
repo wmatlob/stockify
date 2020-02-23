@@ -6,6 +6,7 @@ import {
     TIME_SERIES_DAILY_CLOSE_KEY,
     TIME_SERIES_DAILY_VOLUME_KEY
 } from "../data/constant";
+import axios from 'axios';
 
 const alphaVantageKey = process.env.REACT_APP_ALPHA_VANTAGE_KEY;
 // const microsoftData = require("../data/msft-data.json");
@@ -109,4 +110,3 @@ export const round = (number, decimalPlaces) => {
       Math.pow(10, decimalPlaces)
     );
   };
-  

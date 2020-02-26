@@ -4,9 +4,6 @@ import '././css/Stock.css';
 
 
 class Stock extends Component {
-	test(){
-		alert('successful');
-	}
 	render(){
 		return(
 			<div className = "background">
@@ -14,12 +11,10 @@ class Stock extends Component {
 			
 				<Container className = "filter-title">
 					<Row>
-						<Col> 
-							Market 
-								<div className = "filter" onClick ={this.test}> United States &#9660; </div>
+						<Col> Market 
+							<div className = "filter"> United States &#9660; </div>
 						</Col>
-						<Col> 
-							Industry 
+						<Col>Industry 
 							<div className = "filter"> Technology &#9660; </div>
 						</Col>
 						<Col className ='more-filter'> More Filters </Col>

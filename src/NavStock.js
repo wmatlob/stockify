@@ -1,29 +1,52 @@
 import React, {Component} from 'react';
 import Nav from 'react-bootstrap/Nav';
 import '././css/EachStock.css';
+import {Link} from 'react-router-dom';
 
 class NavStock extends Component {
     render(){
         return(
         <div>
-            <Nav id = "options" as="ul">
+             {/* <Nav id = "options" as="ul">
                 <Nav.Item as="li">
-                    <Nav.Link>Quote</Nav.Link>
+                    <Nav.Link href = '/Quote'>Quote </Nav.Link>
                 </Nav.Item>
                 <Nav.Item as="li">
-                    <Nav.Link>Future Growth</Nav.Link>
+                    <Nav.Link href = '/FutureGrowth'>Future Growth</Nav.Link>
                 </Nav.Item>
                 <Nav.Item as="li">
-                    <Nav.Link >Valuation</Nav.Link>
+                    <Nav.Link href = '/Valuation'>Valuation</Nav.Link>
                 </Nav.Item>
                 <Nav.Item as="li">
-                    <Nav.Link>Financial Health</Nav.Link>
+                    <Nav.Link href = '/FinancialHealth'>Financial Health</Nav.Link>
                 </Nav.Item>
                 <Nav.Item as="li">
                     <Nav.Link >Company information</Nav.Link>
                 </Nav.Item>
-        </Nav>
-            </div>
+            </Nav> */}
+
+            <nav className = "nav-link1">
+                <ul className="nav-link2">
+                    <Link to = "/Quote">
+                        <li> Quote </li>
+                    </Link>
+                    <Link to = "/FutureGrowth">
+                        <li> Future Growth </li>
+                    </Link>
+                    <Link to = "/Valuation">
+                        <li> Valuation </li>
+                    </Link>
+                    <Link to = "/FinancialHealth">
+                        <li> Financial Health </li>
+                    </Link>
+                    <Link>
+                        <li> Company information </li>
+                    </Link>
+                </ul>
+            </nav>
+
+
+        </div>
         );
     }
 }

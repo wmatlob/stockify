@@ -10,7 +10,9 @@ import FinancialHealth from './FinancialHealth';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
+
 class App extends Component {
+  
   render(){
     return (
       <Router>
@@ -20,8 +22,10 @@ class App extends Component {
               <Breadcrumb.Item> Stock </Breadcrumb.Item>
               <Breadcrumb.Item> United States </Breadcrumb.Item>
           </Breadcrumb>
+
+        
         <Switch>
-          <Route path ="/" exact component = {Stock}/> 
+          <Route path ="/" exact component = {Stock}/>
           <Route path ="/Quote" component = {Quote}/> 
           <Route path ="/FutureGrowth" component = {FutureGrowth}/> 
           <Route path ="/Valuation" component = {Valuation}/> 

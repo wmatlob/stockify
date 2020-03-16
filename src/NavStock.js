@@ -3,7 +3,12 @@ import Nav from 'react-bootstrap/Nav';
 import '././css/EachStock.css';
 import {Link} from 'react-router-dom';
 
+let variale = [];
 class NavStock extends Component {
+    constructor(props){
+        super(props)
+        variale = this.props;
+    }
     render(){
         return(
         <div>

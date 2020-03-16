@@ -6,18 +6,25 @@ import StockCharts from './StockCharts';
 import KeyMetric from './KeyMetric';
 import NavStock from './NavStock';
 
+let arrayData = [];
 class EachStock extends Component {
+    constructor (props) {
+        super(props);
+        //path = this.props.history;
+        console.log(this.props);
+        arrayData = this.props.history.location.rememberHere;
+        //console.log(datas);
+    }
     render(){
-        
         return(
             <div>
-            <NavStock/>
-            <Container id = "layout">
-                <Row id ="fix">
-                    <Col xs={6}><StockCharts/></Col>
-                    <Col xs={6}><KeyMetric/></Col>
-                </Row>
-            </Container>
+                <NavStock { ...arrayData}></NavStock>
+                <Container id = "layout">
+                    <Row id ="fix">
+                        <Col xs={6}><StockCharts/></Col>
+                        <Col xs={6}><KeyMetric {...arrayData}></KeyMetric></Col>
+                    </Row>
+                </Container>
             </div>
         );
     }

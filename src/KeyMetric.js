@@ -3,7 +3,16 @@ import styled, {css} from 'styled-components';
 import Table from 'react-bootstrap/table';
 
 class KeyMetric extends Component {
+    constructor (props) {
+        super(props);
+        //path = this.props.history;
+        console.log(this.props);
+        //const datas = this.props.history.location.rememberHere;
+        //console.log(datas);
+
+    }
     render (){
+        let variable = this.props;
         return(
         <div>
             <h5  id ="title">Key Metric</h5>
@@ -17,7 +26,7 @@ class KeyMetric extends Component {
                     <td> Sector </td> 
                 </tr>
                 <tr>
-                    <td> 123</td>
+                    <td>{variable.Change}</td>
                     <td> 123</td>
                     <td> 123</td>
                     <td> 123</td>

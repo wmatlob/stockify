@@ -3,14 +3,18 @@ import Nav from 'react-bootstrap/Nav';
 import '././css/EachStock.css';
 import {Link} from 'react-router-dom';
 
-let variale = [];
+let arrayData = [];
 class NavStock extends Component {
     constructor(props){
         super(props)
-        variale = this.props;
+        //arrayData = this.props;
+        // path = this.props;
+       
     }
     render(){
-        return(
+        arrayData = this.props;
+        console.log( "this is data in nav" + JSON.stringify(this.props));
+       return(
         <div>
              {/* <Nav id = "options" as="ul">
                 <Nav.Item as="li">
@@ -32,17 +36,39 @@ class NavStock extends Component {
 
             <nav className = "nav-link1">
                 <ul className="nav-link2">
-                    <Link to = "/Quote">
+                    <Link to = {
+                        {
+                            pathname: "/Quote",
+                            state: arrayData
+                        }
+                    }>
                         <li> Quote </li>
                     </Link>
-                    <Link to = "/FutureGrowth">
+
+                    <Link to = {
+                        {
+                        pathname: "/FutureGrowth",
+                        state: arrayData
+                        }
+                    }>
                         <li> Future Growth </li>
                     </Link>
-                    <Link to = "/Valuation">
+
+                    <Link to = {
+                        {
+                        pathname: "/Valuation",
+                        state: arrayData
+                        }
+                    }>
                         <li> Valuation </li>
                     </Link>
-                    <Link to = "/FinancialHealth">
-                        <li> Financial Health </li>
+                    <Link to = {
+                        {
+                        pathname: "/FinancialHealth",
+                        state: arrayData
+                        }
+                    }>
+                        <li>Financial Health </li>
                     </Link>
                     <Link>
                         <li> Company information </li>

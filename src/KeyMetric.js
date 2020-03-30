@@ -5,10 +5,7 @@ import Table from 'react-bootstrap/table';
 class KeyMetric extends Component {
     constructor (props) {
         super(props);
-        //path = this.props.history;
         console.log(this.props);
-        //const datas = this.props.history.location.rememberHere;
-        //console.log(datas);
 
     }
     render (){
@@ -21,30 +18,30 @@ class KeyMetric extends Component {
                 <tr>
                     <td> Moat </td>
                     <td> No.of Fund owning </td>
-                    <td> Sharpe Ratio </td> 
+                    <td> Shape Ratio </td> 
                     <td> Market Cap </td>
                     <td> Sector </td> 
                 </tr>
                 <tr>
-                    <td>{variable.Change}</td>
-                    <td> 123</td>
-                    <td> 123</td>
-                    <td> 123</td>
-                    <td> 123</td>
+                    <td>{variable.Moat}</td>
+                    <td> {variable.Funds}</td>
+                    <td> {variable.ShapeRatio}</td>
+                    <td> {variable.MarketCap}</td>
+                    <td> {variable.Sector}</td>
                 </tr>
                 <tr>
                     <td> Price/Sales </td>
                     <td> Price/Earnings </td>
                     <td> Forward P/E </td> 
-                    <td> Price/Bookp </td>
+                    <td> Price/Book </td>
                     <td> PEG Ratio </td>
                 </tr>
                 <tr>
-                    <td> 123</td>
-                    <td> 123</td>
-                    <td> 123</td>
-                    <td> 123</td>
-                    <td> 123</td>
+                    <td> {variable.PriceSales}</td>
+                    <td> {variable.PriceEarnings}</td>
+                    <td> {variable.ForwardPE}</td>
+                    <td> {variable.PriceBook}</td>
+                    <td> {variable.PEGRatio}</td>
                 </tr>
                 <tr>
                     <td> Rev 3-Yr Growth </td>
@@ -54,11 +51,12 @@ class KeyMetric extends Component {
                     <td> Current Ratio </td> 
                 </tr>
                 <tr>
-                    <td> 123</td>
-                    <td> 123</td>
-                    <td> 123</td>
-                    <td> 123</td>
-                    <td> 123</td>
+                    <td> {variable.Rev3YrGrowth}</td>
+                    <td> {variable.ROE}</td>
+                    <td> {variable.OperatingMargin}</td>
+                    <td> {variable.DIVYield}</td>
+                    <td> {variable.CurrentRatio}</td>
+
                 </tr>
               </tbody>
             </Table>

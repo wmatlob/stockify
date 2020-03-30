@@ -10,12 +10,12 @@ let arrayData = [];
 class EachStock extends Component {
     constructor (props) {
         super(props);
-        //path = this.props.history;
-        console.log(this.props);
-        arrayData = this.props.history.location.rememberHere;
-        //console.log(datas);
+        arrayData = this.props.history.location.metaData
+                 == undefined ?this.props.location.state: this.props.history.location.metaData;
+        
     }
     render(){
+        console.log( "this is data in Stock" + JSON.stringify(arrayData));
         return(
             <div>
                 <NavStock { ...arrayData}></NavStock>

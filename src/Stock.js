@@ -25,12 +25,22 @@ class Stock extends Component {
 		this.setState({loading:true});
 		this.getData();
 	}
-	onSubmit(rememberHere){
+
+	
+	// pushToNave(metaData){
+	// 	path.push({
+	// 		metaData
+	// 	});
+	// }
+	
+	onSubmit(metaData){
 		path.push({
 			pathname : '/Quote',
-			rememberHere
+			metaData
 		})
+		//pushToNave(metaData);
 	}
+
 
 
 	getData = async () =>{
@@ -53,12 +63,11 @@ class Stock extends Component {
 	
 	render(){
 		const tempt = this.state.datas;
-		console.log(tempt);
+		//console.log(tempt);
 		return(
 			
 			<div className = "background">
 				<h className ="title"> United States Stocks  </h>
-				{/* {tempt['ABMD']?tempt['ABMD']:null}</h> */}
 			
 				<Container className = "filter-title">
 					<Row>

@@ -12,14 +12,16 @@ export class AppProvider extends React.Component {
         this.state = {
             prices: [],
             page: 'dashboard',
-            favorites: [],
-            // ...this.savedSettings(),
+            favorites: ["AAPL"],
+            ...this.savedSettings(),
             setPage: this.setPage,
             addStock: this.addStock,
             removeStock: this.removeStock,
             isInFavorites: this.isInFavorites,
             confirmFavorites: this.confirmFavorites,
-            setFilteredStocks: this.setFilteredStocks
+            setCurrentFavorite: this.setCurrentFavorite,
+            setFilteredStocks: this.setFilteredStocks,
+            
         }
     }
 
@@ -39,8 +41,19 @@ export class AppProvider extends React.Component {
         }).catch(error => {
             // this.setState({ error: true })
             console.log(error);
+
+
         });
     };
+
+    toArray = (object) =>{
+        const dataArr = Object.keys(object)
+            .map( (dataKey) => {
+                return object[dataKey]
+            })
+        return dataArr
+    }
+
 
     // fetchPrices = () => {
     //     if(this.state.firstVisit) return;
@@ -80,6 +93,7 @@ export class AppProvider extends React.Component {
             const stockList = res.data;
             console.log(stockList)
             this.setState({ stockList }, this.prices);
+            console.log(this.toArray(stockList));
         }).catch(error => {
             // this.setState({ error: true })
             console.log(error);
@@ -103,28 +117,64 @@ export class AppProvider extends React.Component {
 
     confirmFavorites = () => {
         axios.put('https://stockify-119ec.firebaseio.com/favorites/-M0d7S2jeQln01wLXp91.json', this.state.favorites)
+
+        let currentFavorite = this.state.favorites[0];
+        axios.put('https://stockify-119ec.firebaseio.com/favorites/currentFavorite.json', {0: this.state.favorites[0]})
+        
+
         this.setState({
             firstVisit: false,
-            page: 'dashboard'
+            page: 'dashboard',
+            currentFavorite,
         }, () => {
             this.prices();
         });
 
     }
 
+    setCurrentFavorite = (sym) => {
+
+        this.setState({
+            currentFavorite: sym
+        })
+        axios.put('https://stockify-119ec.firebaseio.com/favorites/currentFavorite.json', {0: sym})
+    };
+
     savedSettings() {
-        axios.get('https://stockify-119ec.firebaseio.com/favorites/-M0d7S2jeQln01wLXp91.json')
-            .then(res => {
-                const stockDashData = res.data;
-                console.log(res);
+        const requestOne = axios.get('https://stockify-119ec.firebaseio.com/favorites/-M0d7S2jeQln01wLXp91.json')
+        const requestTwo = axios.get('https://stockify-119ec.firebaseio.com/favorites/currentFavorite.json')
+        
+        axios.all([requestOne, requestTwo])
+            .then(
+                axios.spread((...responses) => {
+                const responseOne = responses[0];
+                const responseTwo = responses[1];
+     
+             // use/access the results
+            console.log("1", responseOne, responseTwo);
+                const stockDashData = responseOne.data;
                 if (!stockDashData) {
                     this.setState({ page: 'settings', firstVisit: true })
                 } else {
                     let favorites = [...stockDashData];
+                    let currentFavorite  = responseTwo.data[0]
                     // this.setState({ favorites }, this.prices);
-                    this.setState({ favorites });
+                    this.setState({ favorites, currentFavorite});
                 }
             })
+        )
+            // .then(res => {
+            //     const stockDashData = res.data;
+            //     console.log("stockData: ", res);
+            //     if (!stockDashData) {
+            //         this.setState({ page: 'settings', firstVisit: true })
+            //     } else {
+            //         let favorites = [...stockDashData];
+            //         let currentFavorite  = stockDashData[0]
+            //         // this.setState({ favorites }, this.prices);
+            //         this.setState({ favorites, currentFavorite});
+            //     }
+            // })
     }
 
     setPage = page => this.setState({ page })

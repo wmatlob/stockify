@@ -4,11 +4,11 @@ import {DeletableTile} from "../Shared/Tile";
 
 export const StockHeaderGridStyled = styled.div`
   display: grid;
+    grid-template-columns: 1fr 1fr;
 `;
 
 export const StockSymbol = styled.div`
   justify-self: right;
-  padding-top: 10px;
 `;
 
 const DeleteIcon = styled.div`
@@ -19,16 +19,29 @@ const DeleteIcon = styled.div`
     color: red;
   }
 `;
-const StyledDiv = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-`
+// const StyledDiv = styled.div`
+//   display: grid;
+//   grid-template-columns: 1fr 1fr;
+// `
 
 export default function ({name, ticker, topSection}) {
   return <StockHeaderGridStyled>
-    <StyledDiv > {ticker} {topSection?<DeleteIcon> X </DeleteIcon>:null} </StyledDiv>
-    {topSection ? null: (
+    <div>{ticker}</div>
+    {topSection ? (
+    <DeleteIcon> X </DeleteIcon>
+    ): ( 
       <StockSymbol> {name} </StockSymbol>
     )}
   </StockHeaderGridStyled>;
 }
+
+// export default function ({name, symbol, topSection}) {
+//   return <CoinHeaderGridStyled>
+//     <div> {name} </div>
+//     {topSection ? (
+//       <DeleteIcon> X </DeleteIcon>
+//     ) : (
+//       <CoinSymbol> {symbol} </CoinSymbol>
+//     )}
+//   </CoinHeaderGridStyled>;
+// }

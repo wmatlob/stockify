@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Nav, Table} from 'react-bootstrap';
 import NavStock from './NavStock';
+import '././css/Stock.css';
 
 let arrayData =[];
 class Valuation extends Component {
@@ -11,7 +12,8 @@ class Valuation extends Component {
 		arrayData = this.props.location.state;
         return(
 			<div>
-				<NavStock/>
+				<h5 className ="title">{arrayData.Name}</h5>
+				<NavStock { ...arrayData}></NavStock>
 		        <div id = "group1">
 		            <h5>Financial Health</h5>
 		            <h6>Ratios </h6>

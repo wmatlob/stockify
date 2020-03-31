@@ -5,6 +5,7 @@ import '././css/EachStock.css';
 import StockCharts from './StockCharts';
 import KeyMetric from './KeyMetric';
 import NavStock from './NavStock';
+import '././css/Stock.css';
 
 let arrayData = [];
 class EachStock extends Component {
@@ -18,6 +19,7 @@ class EachStock extends Component {
         console.log( "this is data in Stock" + JSON.stringify(arrayData));
         return(
             <div>
+                <h5 className ="title">{arrayData.Name}</h5>
                 <NavStock { ...arrayData}></NavStock>
                 <Container id = "layout">
                     <Row id ="fix">

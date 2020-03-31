@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Nav, Table} from 'react-bootstrap';
 import NavStock from './NavStock';
+import '././css/Stock.css';
 
 let arrayData = [];
 class FutureGrowth extends Component {
@@ -13,6 +14,7 @@ class FutureGrowth extends Component {
 		console.log("this is in Feature Growth "+arrayData.Revenue);
         return(
 			<div>
+				<h5 className ="title">{arrayData.Name}</h5>
 				<NavStock { ...arrayData}></NavStock>
 		        <div id = "group1">
 		            <h5>Future Growth</h5>
@@ -22,10 +24,10 @@ class FutureGrowth extends Component {
 		                <div> Operating Income % </div>
 		                <div> Net Income % </div> 
 		                <div> EPS % </div>
-		                <div> {arrayData.Revenue}</div>
-						<div> {arrayData.OperatingIncome}</div>
-						<div> {arrayData.NetIncome}</div>
-						<div> {arrayData.EPS}</div>
+		                <div> {arrayData.RevenuePercent}</div>
+						<div> {arrayData.OperatingIncomePercent}</div>
+						<div> {arrayData.NetIncomePercent}</div>
+						<div> {arrayData.EPSPercent}</div>
 		            </div>
 
 		            <Table striped bordered hover size="sm" >

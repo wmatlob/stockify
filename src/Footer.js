@@ -20,7 +20,7 @@ class Footer extends Component{
 						<div className ='col-md-2 col-sm-2'>
 							<h6> About us</h6>
 							<ul className ='list-unstyled'>
-								<a href="https://github.com/chloephan/Stockify.git">GitHub</a>
+								<a href="https://github.com/dohdat/stockify">GitHub</a>
 		           				<p>
 					              <a href="#!">FAQ</a>
 					            </p>

@@ -7,14 +7,14 @@ class Header extends Component {
 	render(){
 		return (
 			<Navbar collapseOnSelect expand="lg" bg="light" variant="light">
-			<Navbar.Brand href="#home">Stockify</Navbar.Brand>
+			<Navbar.Brand href="/">Stockify</Navbar.Brand>
 			
 
 			<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">
 			    	<Nav className="mr-auto"/>
 				    <Nav>
-				    	<Nav.Link href="/">Stock</Nav.Link>
+				    	<Nav.Link href="/">Home Page</Nav.Link>
 				    	<Nav.Link href="#deets">Porfolio</Nav.Link>
 				    	<Nav.Link href="#deets">Screener</Nav.Link>
 				    	{/* <NavDropdown title="My Account" id="collasible-nav-dropdown">

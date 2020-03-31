@@ -83,35 +83,163 @@ class Stock extends Component {
 
 				<Container>
 					<Row>
-						<Col xs={6} md={4}>
-							<a type = "button" onClick={e => this.onSubmit(tempt['ABMD'])}>
-								<Image src="https://blog.hubspot.com/hubfs/image8-2.jpg"
+						<Col>
+							<a type = "button" onClick={e => this.onSubmit(tempt['AAPL'])}>
+								<Image className="photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1200px-Apple_logo_black.svg.png"
 									 thumbnail />
 							</a>
 						</Col>
-						<Col xs={6} md={4}>
-							<a href="/Quote">
-								<Image src="https://seekvectorlogo.com/wp-content/uploads/2017/12/microsoft-vector-logo.png" thumbnail />
+						<Col>
+							<a type = "button" onClick={e => this.onSubmit(tempt['GOOG'])}>
+								<Image className="photo" src="https://europeanbusinessmagazine.com/wp-content/uploads/2019/09/alphabet.jpg"
+									 thumbnail />
 							</a>
 						</Col>
-						<Col xs={6} md={4}>
-							<a href="/Quote">
-								<Image src="data:image/png;base64,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" thumbnail />
+						<Col >
+							<a type = "button" onClick={e => this.onSubmit(tempt['MSFT'])}>
+								<Image className="photo" src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE2r0Th?ver=5b7d"
+									 thumbnail />
 							</a>
 						</Col>
-						<Col xs={6} md={4}>
-							<a href="/Quote">
-								<Image src="https://www.ibm.com/ibm/history/ibm100/images/icp/L427528O64612Z90/us__en_us__ibm100__making_ibm__rand_8bar_logo5__620x350.jpg" thumbnail />
+						<Col >
+							<a type = "button" onClick={e => this.onSubmit(tempt['AMZN'])}>
+								<Image className="photo" src="https://www.fis.com/attach_fck/Amazon%20logo%20plain%20fis_com.png"
+									 thumbnail />
 							</a>
 						</Col>
-						<Col xs={6} md={4}>
-							<a href="/Quote">
-								<Image src="data:image/png;base64,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" thumbnail />
+					</Row>
+					<a className = "spaceBetweenImage"></a>
+					<Row>
+						<Col>
+							<a type = "button" onClick={e => this.onSubmit(tempt['FB'])}>
+								<Image className="photo" src="https://www.facebook.com/images/fb_icon_325x325.png"
+									 thumbnail />
 							</a>
 						</Col>
-						<Col xs={6} md={4}>
-							<a href="/Quote">
-								<Image src="data:image/png;base64,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" thumbnail />
+						<Col>
+							<a type = "button" onClick={e => this.onSubmit(tempt['V'])}>
+								<Image className="photo" src="https://usa.visa.com/dam/VCOM/regional/lac/ENG/Default/Partner%20With%20Us/Payment%20Technology/visapos/full-color-800x450.jpg"
+									 thumbnail />
+							</a>
+						</Col>
+						<Col>
+							<a type = "button" onClick={e => this.onSubmit(tempt['MA'])}>
+								<Image className="photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1200px-Mastercard-logo.svg.png"
+									 thumbnail />
+							</a>
+						</Col>
+						<Col>
+							<a type = "button" onClick={e => this.onSubmit(tempt['ADBE'])}>
+								<Image className="photo" src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Adobe_Systems_logo_and_wordmark.svg"
+									 thumbnail />
+							</a>
+						</Col>
+					</Row>
+					<a className = "spaceBetweenImage"></a>
+					<Row>
+						<Col >
+							<a type = "button" onClick={e => this.onSubmit(tempt['INTU'])}>
+								<Image className="photo" src="https://www.intuit.com/ca/oicms/i_com_ca/uploads/2019/11/icom-intuit-nav-logo-1.png"
+									 thumbnail />
+							</a>
+						</Col>
+						<Col >
+							<a type = "button" onClick={e => this.onSubmit(tempt['AVGO'])}>
+								<Image className="photo" src="https://dividendsensei.com/wp-content/uploads/2019/07/Broadcom-Logo.png"
+									 thumbnail />
+							</a>
+						</Col>
+						<Col >
+							<a type = "button" onClick={e => this.onSubmit(tempt['INTC'])}>
+								<Image className="photo" src="https://www.ti.com/content/dam/ticom/images/identities/ti-brand/ti-stk-2c-pos-rgb-logo.png"
+									 thumbnail />
+							</a>
+						</Col>
+						<Col >
+							<a type = "button" onClick={e => this.onSubmit(tempt['NKE'])}>
+								<Image className="photo" src="https://www.dandodiary.com/wp-content/uploads/sites/893/2018/10/nike1.png"
+									 thumbnail />
+							</a>
+						</Col>
+					</Row>
+					<a className = "spaceBetweenImage"></a>
+					<Row>
+						<Col>
+							<a type = "button" onClick={e => this.onSubmit(tempt['APD'])}>
+								<Image className="photo" src="http://www.airproducts.com/~/media/Images/inline/Company/AirProducts-logo-pms347-PNG.png?la=en"
+									 thumbnail />
+							</a>
+						</Col>
+						<Col>
+							<a type = "button" onClick={e => this.onSubmit(tempt['SYK'])}>
+								<Image className="photo" src="https://stryker-h.assetsadobe.com/is/image//content/dam/stryker/about/news/images/stryker_logo2015_web.jpg?$preset_307_184$"
+									 thumbnail />
+							</a>
+						</Col>
+						<Col>
+							<a type = "button" onClick={e => this.onSubmit(tempt['BMY'])}>
+								<Image className="photo" src="https://www.bms.com/assets/bms/us/en-us/images/bms-logo-social-default-card.jpg"
+									 thumbnail />
+							</a>
+						</Col>
+						<Col>
+							<a type = "button" onClick={e => this.onSubmit(tempt['XLNX'])}>
+								<Image className="photo" src="https://www.azom.com/images/suppliers/ImageForSupplier_14782_15768414522228549.png"
+									 thumbnail />
+							</a>
+						</Col>
+					</Row>
+					<a className = "spaceBetweenImage"></a>
+					<Row>
+						<Col>
+							<a type = "button" onClick={e => this.onSubmit(tempt['MMC'])}>
+								<Image className="photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/MMC_Corporation_logo.svg/1200px-MMC_Corporation_logo.svg.png"
+									 thumbnail />
+							</a>
+						</Col>
+						<Col>
+							<a type = "button" onClick={e => this.onSubmit(tempt['ISRG'])}>
+								<Image className="photo" src="https://upload.wikimedia.org/wikipedia/en/thumb/0/01/Intuitive_Surgical_logo.svg/1200px-Intuitive_Surgical_logo.svg.png"
+									 thumbnail />
+							</a>
+						</Col>
+						<Col>
+							<a type = "button" onClick={e => this.onSubmit(tempt['ORCL'])}>
+								<Image className="photo" src="https://hubsportsboston.com/wp-content/uploads/2016/12/Oracle-corporate-team-logo.jpg"
+									 thumbnail />
+							</a>
+						</Col>
+						<Col>
+							<a type = "button" onClick={e => this.onSubmit(tempt['CSCO'])}>
+								<Image className="photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/1200px-Cisco_logo_blue_2016.svg.png"
+									 thumbnail />
+							</a>
+						</Col>
+					</Row>
+					<a className = "spaceBetweenImage"></a>
+					<Row>
+						<Col>
+							<a type = "button" onClick={e => this.onSubmit(tempt['SBUX'])}>
+								<Image className="photo" src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Starbucks_Corporation_Logo_2011.svg/1200px-Starbucks_Corporation_Logo_2011.svg.png"
+									 thumbnail />
+							</a>
+						</Col>
+						<Col>
+							<a type = "button" onClick={e => this.onSubmit(tempt['MCD'])}>
+								<Image className="photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png"
+									 thumbnail />
+							</a>
+						</Col>
+						<Col>
+							<a type = "button" onClick={e => this.onSubmit(tempt['HLT'])}>
+								<Image className="photo" src="https://www.complaintsdepartment.com/image/15/600/hilton-worldwide-logo.png"
+									 thumbnail />
+							</a>
+						</Col>
+						<Col>
+							<a type = "button" onClick={e => this.onSubmit(tempt['DLR'])}>
+								<Image className="photo" src="https://www.gipartners.com/system/uploads/fae/image/asset/467/GI_portfolio-logos_Digital-Reality-Trust.png"
+									 thumbnail />
 							</a>
 						</Col>
 					</Row>

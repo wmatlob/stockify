@@ -3,6 +3,9 @@ import { AppContext } from "../App/AppProvider";
 import { SelectableTile, DisabledTile, DeletableTile } from "../Shared/Tile";
 import StockHeaderGrid from '../Settings/StockHeaderGrid';
 import StockImage from '../Shared/StockImage';
+import styled from 'styled-components'
+
+
 
 function clickStockHandler(topSection, stockKey, addStock, removeStock){
     return topSection? () => {
@@ -11,6 +14,7 @@ function clickStockHandler(topSection, stockKey, addStock, removeStock){
         addStock(stockKey)
     }
 }
+
 export default function ({ stockKey, topSection }) {
 
     return <AppContext.Consumer>
@@ -23,7 +27,7 @@ export default function ({ stockKey, topSection }) {
             }else if (isInFavorites(stockKey)){
                 TileClass = DisabledTile;
             }
-            return <TileClass
+            return <TileClass 
                 onClick={clickStockHandler(topSection, stockKey, addStock, removeStock)}
             >
                 <StockHeaderGrid topSection={topSection}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import StockCharts from './StockCharts';
+import StockCharts from '../Dashboard/StockCharts';
 
 import AppLayout from './AppLayout';
 import AppBar from './AppBar';

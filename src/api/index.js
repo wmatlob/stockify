@@ -68,7 +68,8 @@ const parseRawData = (
 //     );
 // };
 
-const parseTimeSeriesData = (rawData) => {
+export const parseTimeSeriesData = (rawData) => {
+    // const data = rawData["Monthly Time Series"];
     const data = rawData["Time Series (Daily)"];
     const newData = Object.keys(data)
         .map( dateKey => {
@@ -96,10 +97,23 @@ const parseTimeSeriesData = (rawData) => {
 // };
 
 
-export const getMicrosoftDataFromApi = async () => {
+// export const getDataFromApi = async (ticker) => {
+//     axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${ticker}&outputsize=compact&apikey=${alphaVantageKey}`)
+//         .then(res => {
+//             console.log("fetch", res.data)
+//         }).catch(error => {
+//             // this.setState({ error: true })
+//             console.log(error);
+//         });
+//     // return parseTimeSeriesData(data);
+// };
+
+export const getDataFromApi = async (ticker) => {
     const response = await fetch(
-        `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=AAPL&outputsize=compact&apikey=${alphaVantageKey}`
+        `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${ticker}&outputsize=compact&apikey=${alphaVantageKey}`
+        // `https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=${ticker}&apikey=${alphaVantageKey}`
     );
+
     const data = await response.json();
     return parseTimeSeriesData(data);
 };

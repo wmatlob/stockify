@@ -2,18 +2,25 @@ import React from 'react';
 import axios from 'axios'
 import _ from 'lodash';
 
+import {parseTimeSeriesData} from '../api/index'
+
+import {getDataFromApi}from '../api/index'
+
 export const AppContext = React.createContext();
 const alphaVantageKey = process.env.REACT_APP_ALPHA_VANTAGE_KEY;
 
 const MAX_FAVORITES = 10;
+const TIME_UNITS = 10;
+
 export class AppProvider extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             prices: [],
+            historical: [],
             page: 'dashboard',
             favorites: ["AAPL"],
-            ...this.savedSettings(),
+            // ...this.savedSettings(),
             setPage: this.setPage,
             addStock: this.addStock,
             removeStock: this.removeStock,
@@ -21,28 +28,29 @@ export class AppProvider extends React.Component {
             confirmFavorites: this.confirmFavorites,
             setCurrentFavorite: this.setCurrentFavorite,
             setFilteredStocks: this.setFilteredStocks,
-            
+            currentFavorite: "AAPL"
         }
     }
 
     componentDidMount = () => {
         this.savedSettings();
         this.fetchStockList();
+        this.fetchStockData();
     }
 
     //Sample Axios fetch
     fetchStockData = () => {
+        const ticker = this.state.currentFavorite
         axios.get(
-            `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&outputsize=compact&apikey=${alphaVantageKey}`
+            `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${ticker}&outputsize=compact&apikey=${alphaVantageKey}`
         ).then(res => {
-            const stockData = res.data["Time Series (Daily)"];
-            // console.log(stockData)
-            this.setState({ stockData });
+            const stockData = res.data;
+            const historical = parseTimeSeriesData(stockData);
+            console.log("Historical",historical)
+            this.setState({ historical });
         }).catch(error => {
             // this.setState({ error: true })
-            console.log(error);
-
-
+            console.log(error)
         });
     };
 
@@ -86,7 +94,25 @@ export class AppProvider extends React.Component {
 
     }
 
+    // fetchHistorical = () => {
+    //     if(this.state.firstVisit) return;
+    //     // let results = await this.historical();
+    //     let historical = getDataFromApi(this.state.currentFavorite)
+    //     console.log("HISTORIACAL", historical)
+    //     // this.setState({historical})
+    //     // console.log("Historical", results)
+    // }
+
+    // historical = () => {
+    //     let promises = [];
+    //     for(let units = TIME_UNITS; units >0; units--){
+    //         promises.push(getDataFromApi(this.state.currentFavorite))
+    //     }
+    //     return Promise.all(promises);
+    // }
+
     fetchStockList = () => {
+        
         axios.get(
             `https://stockify-119ec.firebaseio.com/1JgrLHB9XKLonTtayrqZ9D7zkLLfnAwdAHIdhRYmbVGs/StockList.json`
         ).then(res => {
@@ -135,8 +161,9 @@ export class AppProvider extends React.Component {
     setCurrentFavorite = (sym) => {
 
         this.setState({
-            currentFavorite: sym
-        })
+            currentFavorite: sym,
+        }, this.fetchStockData)
+        console.log("curr2", this.state.currentFavorite)
         axios.put('https://stockify-119ec.firebaseio.com/favorites/currentFavorite.json', {0: sym})
     };
 
@@ -159,7 +186,9 @@ export class AppProvider extends React.Component {
                     let favorites = [...stockDashData];
                     let currentFavorite  = responseTwo.data[0]
                     // this.setState({ favorites }, this.prices);
-                    this.setState({ favorites, currentFavorite});
+                    this.setState({ favorites, currentFavorite},
+                        // () =>{this.fetchStockData()}
+                        );
                 }
             })
         )
@@ -180,6 +209,8 @@ export class AppProvider extends React.Component {
     setPage = page => this.setState({ page })
 
     setFilteredStocks = (filteredStocks) => this.setState({ filteredStocks })
+
+    
     render() {
         return (
             <AppContext.Provider value={this.state}>

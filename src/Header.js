@@ -17,13 +17,6 @@ class Header extends Component {
 				    	<Nav.Link href="/">Home Page</Nav.Link>
 				    	<Nav.Link href="#deets">Porfolio</Nav.Link>
 				    	<Nav.Link href="#deets">Screener</Nav.Link>
-				    	{/* <NavDropdown title="My Account" id="collasible-nav-dropdown">
-					        <NavDropdown.Item href="">Action</NavDropdown.Item>
-					        <NavDropdown.Item href="">Another action</NavDropdown.Item>
-					        <NavDropdown.Item href="">Something</NavDropdown.Item>
-					        <NavDropdown.Divider/>
-					        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-					    </NavDropdown> */}
 				    </Nav>
 				</Navbar.Collapse>
 				

@@ -67,20 +67,7 @@ class Stock extends Component {
 		return(
 			
 			<div className = "background">
-				<h className ="title"> United States Stocks  </h>
-			
-				<Container className = "filter-title">
-					<Row>
-						<Col> Market 
-							<div className = "filter"> United States &#9660; </div>
-						</Col>
-						<Col>Industry 
-							<div className = "filter"> Technology &#9660; </div>
-						</Col>
-						<Col className ='more-filter'> More Filters </Col>
-					</Row>
-				</Container>
-
+				
 				<Container>
 					<Row>
 						<Col>

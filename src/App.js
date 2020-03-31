@@ -18,10 +18,6 @@ class App extends Component {
       <Router>
         <div data-spy="scroll" >
           <Header/>
-          <Breadcrumb>
-              <Breadcrumb.Item> Stock </Breadcrumb.Item>
-              <Breadcrumb.Item> United States </Breadcrumb.Item>
-          </Breadcrumb>
 
         
         <Switch>

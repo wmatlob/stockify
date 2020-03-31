@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Nav from 'react-bootstrap/Nav';
 import {Col, Row, Container} from 'react-bootstrap';
 import '././css/EachStock.css';
-import StockCharts from './StockCharts';
 import KeyMetric from './KeyMetric';
 import NavStock from './NavStock';
 import '././css/Stock.css';
@@ -23,7 +22,7 @@ class EachStock extends Component {
                 <NavStock { ...arrayData}></NavStock>
                 <Container id = "layout">
                     <Row id ="fix">
-                        <Col xs={6}><StockCharts/></Col>
+                        
                         <Col xs={6}><KeyMetric {...arrayData}></KeyMetric></Col>
                     </Row>
                 </Container>

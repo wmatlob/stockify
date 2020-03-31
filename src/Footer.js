@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {MDBContainer} from'mdbreact';
-import footerStyle from './footerStyle.css';
+import footerStyle from './css/footerStyle.css';
 
 class Footer extends Component{
 	render(){
